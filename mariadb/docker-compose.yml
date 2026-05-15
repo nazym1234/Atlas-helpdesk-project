@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  db-atlas:
+    image: mariadb:10.11
+    container_name: mariadb-atlas
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=RootPasswordSecurise!2026
+      - MYSQL_DATABASE=glpidb
+      - MYSQL_USER=glpi_user
+      - MYSQL_PASSWORD=GlpiPasswordSecurise!2026
+    ports:
+      - "10.30.0.10:3306:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    networks:
+      - mariadb_net
+
+volumes:
+  mariadb_data:
+
+networks:
+  mariadb_net:
+    driver: bridge

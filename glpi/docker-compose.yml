@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  glpi-app:
+    image: diouxx/glpi:latest
+    container_name: glpi-atlas
+    restart: always
+    environment:
+      - MARIADB_HOST=10.30.0.10
+      - MARIADB_DATABASE=glpidb
+      - MARIADB_USER=glpi_user
+      - MARIADB_PASSWORD=GlpiPasswordSecurise!2026
+    ports:
+      - "10.20.0.20:80:80"
+    volumes:
+      - glpi_data:/var/www/html/glpi
+    networks:
+      - glpi_net
+
+volumes:
+  glpi_data:
+
+networks:
+  glpi_net:
+    driver: bridge
